@@ -1,0 +1,14 @@
+{
+    "json.schemas": [
+        {
+            "exclude": [
+                "node_modules"
+            ]
+        }
+    ],
+    "files.associations": {
+        "*.react.js": "javascriptreact",
+        "*.jsx": "javascriptreact",
+        "*.js": "javascriptreact"
+    }
+}
