@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home/Home/Home';
 import Appointment from './pages/Appointment/Appointment/Appointment';
+import Login from './pages/Login/Login/Login';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route path="/appointment">
             <Appointment />
+          </Route>
+          <Route path="/login">
+            <Login></Login>
           </Route>
         </Switch>
       </Router>
