@@ -15,15 +15,17 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import Calendar from '../../Shared/Calendar/Calendar';
 import Appointments from '../Appointments/Appointments';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
 const Dashboard = (props) => {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [date, setDate] = React.useState(new Date());
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -33,6 +35,7 @@ const Dashboard = (props) => {
         <div>
             <Toolbar />
             <Divider />
+            <Link to="/appointment" style={{ textDecoration: 'none', color: 'black' }}><Button sx={{mt:2}} color="inherit">Appointment</Button></Link>
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
@@ -78,7 +81,6 @@ const Dashboard = (props) => {
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                 aria-label="mailbox folders"
             >
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Drawer
                     container={container}
                     variant="temporary"
@@ -113,10 +115,13 @@ const Dashboard = (props) => {
                 <Typography paragraph>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={5}>
-                            <Calendar></Calendar>
+                            <Calendar
+                                date={date}
+                                setDate={setDate}
+                            ></Calendar>
                         </Grid>
-                        <Grid item xs={12} sm={7}> 
-                            <Appointments></Appointments>
+                        <Grid item xs={12} sm={7}>
+                            <Appointments date={date}></Appointments>
                         </Grid>
                     </Grid>
                 </Typography>

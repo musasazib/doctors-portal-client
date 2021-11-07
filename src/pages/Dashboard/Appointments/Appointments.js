@@ -4,16 +4,16 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 
-const Appointments = () => {
+const Appointments = ({ date }) => {
     const { user } = useAuth([]);
     const [appointments, setAppointments] = useState([]);
 
     useEffect(() => {
-        const url = `http://localhost:5000/appointments?email=${user.email}`
+        const url = `http://localhost:5000/appointments?email=${user.email}&date=${date}`
         fetch(url)
             .then(res => res.json())
             .then(data => setAppointments(data))
-    }, [user.email])
+    }, [user.email, date])
 
     return (
         <div>
@@ -24,6 +24,7 @@ const Appointments = () => {
                         <TableRow>
                             <TableCell>Name</TableCell>
                             <TableCell align="left">Time</TableCell>
+                            <TableCell align="left">Service</TableCell>
                             <TableCell align="left">Action</TableCell>
                         </TableRow>
                     </TableHead>
@@ -37,6 +38,7 @@ const Appointments = () => {
                                     {row.patientName}
                                 </TableCell>
                                 <TableCell align="left">{row.time}</TableCell>
+                                <TableCell align="left">{row.serviceName}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
