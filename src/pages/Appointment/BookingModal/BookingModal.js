@@ -48,7 +48,7 @@ const BookingModal = ({ bookingOpen, handleBookingClose, booking, date, setBooki
         // console.log(appointment);
 
         // send to server
-        fetch('http://localhost:5000/appointments', {
+        fetch('https://infinite-lake-82965.herokuapp.com/appointments', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
